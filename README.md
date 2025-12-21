@@ -39,7 +39,8 @@ python -m ct_residual_disease.main train data/toy_dataset_training.csv \
 You can use trained logistic regression on new data with:
 ```bash
 python -m ct_residual_disease.main infer data/toy_dataset_test.csv \
-  --feature-mode combined
+  --feature-mode combined \
+  --drop-first
 ```
 
 ---
