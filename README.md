@@ -5,7 +5,7 @@ This repository provides a clean, reproducible pipeline to train and apply a log
 
 A **command-line interface (CLI)** is provided for both training and inference.
 
---
+---
 
 ### How to use it?
 
@@ -42,7 +42,7 @@ python -m ct_residual_disease.main infer data/toy_dataset_test.csv \
   --feature-mode combined
 ```
 
---
+---
 Input data format
 
 The input CSV must contain the following columns:
