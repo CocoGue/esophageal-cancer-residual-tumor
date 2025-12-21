@@ -71,6 +71,39 @@ class LogisticRegressionModel:
 
         return self
 
+    def get_coefficients(self) -> pd.DataFrame:
+        """
+        Return model coefficients as a DataFrame.
+
+        Returns
+        -------
+        pd.DataFrame
+            DataFrame with feature names and coefficients.
+        """
+        if self.model_ is None:
+            raise RuntimeError("Model must be fitted first.")
+
+        coef = self.model_.params
+        return pd.DataFrame(
+            {
+                "feature": coef.index,
+                "coefficient": coef.values,
+            }
+        )
+
+    def get_odds_ratios(self) -> pd.DataFrame:
+        """
+        Return odds ratios for each feature.
+
+        Returns
+        -------
+        pd.DataFrame
+            DataFrame with feature names and odds ratios.
+        """
+        coef_df = self.get_coefficients()
+        coef_df["odds_ratio"] = np.exp(coef_df["coefficient"])
+        return coef_df
+
     def predict_proba(self, X: pd.DataFrame):
         """
         Predict probabilities for the positive class.

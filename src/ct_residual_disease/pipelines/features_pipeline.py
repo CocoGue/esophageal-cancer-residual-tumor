@@ -7,10 +7,10 @@ into model-ready features and labels.
 Responsibilities:
 - load raw data
 - enforce variable types
-- encode features
-- split features and target
+- select feature subsets
+- encode categorical variables (if applicable)
 
-This pipeline contains no model logic.
+Scaling is intentionally NOT handled here.
 """
 
 from typing import Tuple
@@ -24,10 +24,33 @@ from ct_residual_disease.data.preprocessing import (
 )
 
 
+# ---------------------------------------------------------------------
+# Feature column definitions
+# ---------------------------------------------------------------------
+
+CLINICAL_COLUMNS = [
+    "Age",
+    "Gender",
+    "Histology",
+    "cT",
+    "cN",
+]
+
+VOLUME_COLUMNS = [
+    "Volume_Component",
+]
+
+
+# ---------------------------------------------------------------------
+# Public API
+# ---------------------------------------------------------------------
+
 def build_features_and_labels(
     csv_path: str,
-    target_column: str = "Residual_Disease",
+    feature_mode: str = "combined",
     encoding: str = "logistic",
+    drop_first: bool = True,
+    target_column: str = "Residual_Disease",
 ) -> Tuple[pd.DataFrame, pd.Series]:
     """
     Build feature matrix X and target vector y from raw data.
@@ -36,12 +59,19 @@ def build_features_and_labels(
     ----------
     csv_path : str
         Path to the input CSV file.
+    feature_mode : str, default="combined"
+        Feature subset to use:
+        - "combined"
+        - "clinical_only"
+        - "volume_only"
+    encoding : str, default="logistic"
+        Encoding strategy:
+        - "logistic": encode categorical variables
+        - "none": no encoding
+    drop_first : bool, default=True
+        Whether to drop first category in one-hot encoding.
     target_column : str, default="Residual_Disease"
-        Name of the target column.
-    encoding : {"logistic", "none"}, default="logistic"
-        Encoding strategy to apply:
-        - "logistic": one-hot / binary encoding for linear models
-        - "none": no additional encoding (e.g. for tree-based models)
+        Target variable name.
 
     Returns
     -------
@@ -49,17 +79,13 @@ def build_features_and_labels(
         Feature matrix X and target vector y.
     """
     # ------------------------------------------------------------------
-    # Load raw data
+    # Load & type raw data
     # ------------------------------------------------------------------
     raw_data = load_dataset(csv_path)
-
-    # ------------------------------------------------------------------
-    # Enforce variable types
-    # ------------------------------------------------------------------
     typed_data = cast_variable_types(raw_data)
 
     # ------------------------------------------------------------------
-    # Separate target and features
+    # Extract target
     # ------------------------------------------------------------------
     if target_column not in typed_data.columns:
         raise ValueError(
@@ -67,19 +93,57 @@ def build_features_and_labels(
         )
 
     y = typed_data[target_column].astype(int)
-    X = typed_data.drop(columns=[target_column])
 
     # ------------------------------------------------------------------
-    # Encode features (model-dependent)
+    # Select feature columns
     # ------------------------------------------------------------------
-    if encoding == "logistic":
-        X = encode_for_logistic_regression(X)
+    X = select_feature_columns(
+        data=typed_data,
+        feature_mode=feature_mode,
+    )
+
+    # ------------------------------------------------------------------
+    # Encode categorical variables (only if relevant)
+    # ------------------------------------------------------------------
+    if encoding == "logistic" and feature_mode != "volume_only":
+        X = encode_for_logistic_regression(
+            X,
+            drop_first=drop_first,
+        )
     elif encoding == "none":
-        # Tree-based models can handle categorical features directly
+        pass
+    elif encoding == "logistic" and feature_mode == "volume_only":
+        # No categorical variables to encode
         pass
     else:
-        raise ValueError(
-            f"Unknown encoding strategy: {encoding}"
-        )
+        raise ValueError(f"Unknown encoding strategy: {encoding}")
 
     return X, y
+
+
+def select_feature_columns(
+    data: pd.DataFrame,
+    feature_mode: str,
+) -> pd.DataFrame:
+    """
+    Select feature columns according to the chosen feature mode.
+    """
+    if feature_mode == "combined":
+        columns = CLINICAL_COLUMNS + VOLUME_COLUMNS
+
+    elif feature_mode == "clinical_only":
+        columns = CLINICAL_COLUMNS
+
+    elif feature_mode == "volume_only":
+        columns = VOLUME_COLUMNS
+
+    else:
+        raise ValueError(f"Unknown feature_mode: {feature_mode}")
+
+    missing = set(columns) - set(data.columns)
+    if missing:
+        raise ValueError(
+            f"Missing required feature columns: {sorted(missing)}"
+        )
+
+    return data[columns].copy()

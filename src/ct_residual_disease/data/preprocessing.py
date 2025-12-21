@@ -46,7 +46,7 @@ def cast_variable_types(data: pd.DataFrame) -> pd.DataFrame:
     # Residual disease: binary categorical variable
     df["Residual_Disease"] = pd.Categorical(df["Residual_Disease"])
 
-    # Study ID: keep as object/string
+    # StudyID: keep as object/string
     df["StudyID"] = df["StudyID"].astype("object")
 
     # Gender: nominal categorical variable
@@ -122,5 +122,12 @@ def encode_for_logistic_regression(
         columns=["cT"],
         drop_first=False,
     )
+
+    # ------------------------------------------------------------------
+    # Cast boolean dummies to int
+    # ------------------------------------------------------------------
+    bool_columns = df.select_dtypes(include="bool").columns
+    if len(bool_columns) > 0:
+        df[bool_columns] = df[bool_columns].astype(int)
 
     return df
