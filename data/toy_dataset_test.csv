@@ -1,0 +1,51 @@
+ID,StudyID,Num_Component,Volume_Component,FPC,Histology,TRG,Residual_Disease,Age,Gender,cT,cN
+ID_01,1,0,7.785548314078703,True,Squamous cell carcinoma,1,0,85,Female,T2,N3
+ID_02,2,0,27.615625466001017,False,Adenocarcinoma,4,1,76,Female,T3,N1
+ID_03,3,0,49.7149908836137,True,Adenocarcinoma,3,1,58,Male,T4,N3
+ID_04,4,0,43.4219291404767,False,Adenocarcinoma,2,1,84,Male,T4,N1
+ID_05,5,1,57.03389254638481,False,Squamous cell carcinoma,2,1,65,Female,T2,N3
+ID_06,6,0,49.85881241964325,True,Squamous cell carcinoma,4,1,65,Female,T3,N2
+ID_07,7,1,38.7003892973684,True,Adenocarcinoma,1,0,62,Male,T3,N2
+ID_08,8,0,58.84122307996208,False,Squamous cell carcinoma,3,1,50,Female,T2,N3
+ID_09,9,0,14.818388241394755,True,Adenocarcinoma,1,0,83,Female,T2,N3
+ID_10,10,1,18.782232451032318,True,Squamous cell carcinoma,1,0,45,Male,T2,N3
+ID_11,11,1,15.402871646538506,False,Squamous cell carcinoma,3,1,52,Female,T4,N2
+ID_12,12,0,53.34156103578702,False,Squamous cell carcinoma,4,1,54,Male,T4,N0
+ID_13,13,0,37.712633815083244,True,Adenocarcinoma,3,1,56,Female,T4,N1
+ID_14,14,1,19.67630674201611,True,Squamous cell carcinoma,4,1,50,Male,T4,N0
+ID_15,15,1,40.062686506201814,True,Adenocarcinoma,3,1,45,Male,T4,N3
+ID_16,16,1,19.138726162790107,False,Squamous cell carcinoma,4,1,72,Female,T2,N0
+ID_17,17,0,51.77922250466416,False,Adenocarcinoma,3,1,84,Male,T4,N0
+ID_18,18,0,28.010604080089966,False,Adenocarcinoma,1,0,49,Female,T2,N0
+ID_19,19,1,32.86127356578895,False,Adenocarcinoma,4,1,57,Male,T3,N2
+ID_20,20,1,28.090725348872592,False,Squamous cell carcinoma,2,1,65,Female,T3,N2
+ID_21,21,0,47.81695558713331,True,Adenocarcinoma,3,1,83,Female,T3,N3
+ID_22,22,0,31.708756633203425,True,Squamous cell carcinoma,2,1,73,Female,T2,N1
+ID_23,23,0,11.533124157209764,False,Adenocarcinoma,1,0,76,Male,T2,N1
+ID_24,24,1,17.08035412723092,False,Adenocarcinoma,4,1,68,Male,T4,N0
+ID_25,25,0,67.71385987297087,False,Squamous cell carcinoma,4,1,62,Female,T2,N0
+ID_26,26,0,64.51484144245643,True,Adenocarcinoma,3,1,53,Female,T2,N1
+ID_27,27,0,51.982428028644975,True,Squamous cell carcinoma,2,1,80,Female,T4,N3
+ID_28,28,1,25.952197687571175,True,Squamous cell carcinoma,4,1,77,Male,T2,N2
+ID_29,29,0,68.15058264086343,True,Adenocarcinoma,3,1,46,Female,T4,N3
+ID_30,30,0,56.725054237947674,False,Adenocarcinoma,2,1,74,Male,T4,N0
+ID_31,31,0,53.01341134953974,False,Adenocarcinoma,2,1,48,Male,T3,N0
+ID_32,32,0,18.356631021533598,True,Squamous cell carcinoma,1,0,75,Female,T2,N3
+ID_33,33,1,22.74964783811575,True,Squamous cell carcinoma,1,0,78,Male,T2,N0
+ID_34,34,0,15.783457729209957,False,Adenocarcinoma,3,1,50,Female,T2,N0
+ID_35,35,0,64.1561437926305,True,Adenocarcinoma,4,1,62,Male,T3,N1
+ID_36,36,1,26.736118471618866,False,Adenocarcinoma,1,0,50,Male,T2,N3
+ID_37,37,0,22.141801887713818,False,Adenocarcinoma,4,1,68,Male,T3,N2
+ID_38,38,1,28.35739744903915,True,Squamous cell carcinoma,4,1,83,Female,T2,N0
+ID_39,39,1,44.753174136513756,True,Squamous cell carcinoma,2,1,48,Female,T3,N3
+ID_40,40,0,20.606366976353904,False,Adenocarcinoma,3,1,61,Female,T2,N3
+ID_41,41,1,22.143176026319832,False,Squamous cell carcinoma,1,0,84,Female,T4,N3
+ID_42,42,0,55.511171790112606,True,Adenocarcinoma,4,1,57,Female,T2,N3
+ID_43,43,1,53.16777735705621,False,Adenocarcinoma,3,1,50,Female,T2,N0
+ID_44,44,0,35.92558238650622,False,Squamous cell carcinoma,2,1,65,Female,T2,N3
+ID_45,45,1,17.468695569294496,False,Squamous cell carcinoma,1,0,65,Male,T4,N1
+ID_46,46,1,45.04587813476414,True,Squamous cell carcinoma,4,1,72,Male,T2,N3
+ID_47,47,1,48.9907960932892,False,Adenocarcinoma,2,1,57,Male,T3,N2
+ID_48,48,0,15.066659268393344,False,Adenocarcinoma,4,1,84,Male,T3,N3
+ID_49,49,0,34.94844413023658,True,Adenocarcinoma,3,1,66,Female,T3,N2
+ID_50,50,0,12.496850431713549,True,Adenocarcinoma,4,1,56,Male,T4,N2
