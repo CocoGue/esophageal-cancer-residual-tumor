@@ -5,7 +5,7 @@ This repository provides a clean, reproducible pipeline to train and apply a log
 
 A **command-line interface (CLI)** is provided for both training and inference.
 
----
+--
 
 ### How to use it?
 
@@ -42,18 +42,19 @@ python -m ct_residual_disease.main infer data/toy_dataset_test.csv \
   --feature-mode combined
 ```
 
----
+--
 Input data format
 
 The input CSV must contain the following columns:
 
-Column	Description
-ID	Patient identifier (e.g. ID_01)
-Study_ID	Numeric ID extracted from ID
-Age	Age
-Gender	Male / Female
-Histology	Adenocarcinoma / Squamous cell carcinoma
-cT	T2 / T3 / T4
-cN	N0 / N1 / N2 / N3
-Volume_Component	Tumor volume
-Residual_Disease	Target (0 = no, 1 = yes)
+| Column              | Description                                                |
+|---------------------|------------------------------------------------------------|
+| ID                  | Patient identifier (e.g. ID_01)                            |
+| Study_ID            | Numeric ID extracted from ID                               |
+| Age                 | Age (years)                                                |
+| Gender              | Male / Female                                              |
+| Histology           | Adenocarcinoma / Squamous cell carcinoma                   |
+| cT                  | T2 / T3 / T4                                               |
+| cN                  | N0 / N1 / N2 / N3                                          |
+| Volume_Component    | Tumor volume                                               |
+| Residual_Disease    | Target (0 = no, 1 = yes) 
